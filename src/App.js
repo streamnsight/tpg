@@ -3,30 +3,26 @@ import './css/App.css';
 import { default as ProjectList } from './components/ProjectList';
 import { default as PageList } from './components/PageList';
 import { default as PageMeta } from './components/PageMeta';
-import { default as Page } from './components/Page';
 import { default as SubscribeButton } from './components/SubscribeButton';
 import { default as WebsocketService } from './services/WebsocketService';
 
 
 class App extends PureComponent {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            projects: [],
-            projectsLoaded: false,
-            projectsLoading: false,
-            currentProject: null,
-            projectSubscribed: null,
-            pages: [],
-            pagesLoaded: false,
-            pagesLoading: false,
-            currentPage: {},
-            pageLoading: false,
-            pageSubscribed: null,
-            error: null
-        };
-    }
+    state = {
+        projects: [],
+        projectsLoaded: false,
+        projectsLoading: false,
+        currentProject: null,
+        projectSubscribed: null,
+        pages: [],
+        pagesLoaded: false,
+        pagesLoading: false,
+        currentPage: {},
+        pageLoading: false,
+        pageSubscribed: null,
+        error: null
+    };
 
     componentWillMount() {
         this.WsService = new WebsocketService();
@@ -65,7 +61,7 @@ class App extends PureComponent {
                     }
                     break;
                 case "page.query":
-                    this.setState(Object.assign({}, this.state.currentPage, r.data, { pageLoading: false }));
+                    this.setState(Object.assign({}, this.state.currentPage, r.data, {pageLoading: false}));
                     break;
                 case "page.update":
                     this.setState(Object.assign(this.state.currentPage, r.data));
@@ -190,26 +186,28 @@ class App extends PureComponent {
                     </div>}
                     <ProjectList projects={this.state.projects} currentProject={this.state.currentProject}
                                  clickHandler={this.getPages}
-                                active={this.state.projectSubscribed}
+                                 active={this.state.projectSubscribed}
                     />
                 </div>
                 <div className="pages">
                     <h1>Project: {this.state.projects && this.state.currentProject}
-                    <SubscribeButton active={this.state.currentProject == this.state.projectSubscribed} clickHandler={this.toggleSubscribeToProjectUpdates}/>
+                        <SubscribeButton active={this.state.currentProject == this.state.projectSubscribed}
+                                         clickHandler={this.toggleSubscribeToProjectUpdates}/>
                     </h1>
                     <PageList pages={this.state.pages}
                               currentPage={this.state.currentPage}
                               clickHandler={this.getPage}
                               loading={this.state.pagesLoading}
-                              active={this.state.pageSubscribed}
+                              active={this.state.pageSubscribed && this.state.pageSubscribed.pageid}
                     />
                 </div>
                 <div className="page">
                     <h1>{this.state.currentPage && this.state.currentPage.title}
-                    <SubscribeButton active={this.state.currentPage == this.state.pageSubscribed} clickHandler={this.toggleSubscribeToPageUpdates}/>
+                        <SubscribeButton active={this.state.currentPage == this.state.pageSubscribed}
+                                         clickHandler={this.toggleSubscribeToPageUpdates}/>
                     </h1>
                     <PageMeta page={this.state.currentPage}
-                        loading={this.state.pageLoading}
+                              loading={this.state.pageLoading}
                     />
 
                 </div>

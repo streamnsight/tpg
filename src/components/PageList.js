@@ -3,9 +3,6 @@ import React, { PureComponent } from 'react';
 import './../css/App.css';
 
 class PageList extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         if (this.props.loading) {
@@ -16,9 +13,10 @@ class PageList extends PureComponent {
                 <ul>
                     {
                         this.props.pages.map(function (page) {
-                            return <li key={page.pageid} onClick={(e) => this.props.clickHandler(page)}
+                            return (<li key={page.pageid} onClick={(e) => this.props.clickHandler(page)}
                                        className={this.props.currentPage.title == page.title ? "highlight" : ""}
-                            >{page.title} <i className={this.props.active == page ? "fa fa-bell" : "fa fa-bell-slash-o"} aria-hidden="true"></i></li>
+                            >{page.title} <i className={this.props.active == page.pageid ? "fa fa-bell" : "fa fa-bell-slash-o"} aria-hidden="true"></i>
+                            </li>)
                         }.bind(this))
                     }
                 </ul>

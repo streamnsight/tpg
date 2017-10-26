@@ -3,10 +3,6 @@ class WebsocketService {
         this.URL = 'wss://wiki-meta-explorer.herokuapp.com/';
         this.ws           = new WebSocket(this.URL);
 
-        this.initWs = this.initWs.bind(this);
-        this.Close = this.Close.bind(this);
-        this.Send  = this.Send.bind(this);
-
         this.initWs();
     }
 
@@ -29,19 +25,24 @@ class WebsocketService {
         };
     };
 
+    // default event handlers
     onOpen    = (e) => {};
     onMessage = (e) => {};
     onError   = (e) => {};
     onClose   = (e) => {};
+
     Close     = () => {
         this.ws.close();
     };
+
     Send      = (msg) => {
+        console.debug(msg);
         switch (this.ws.readyState) {
             case 1: this.ws.send(JSON.stringify(msg));
                 break;
             case 0:
             case 2:
+                // in case coket is opening, closing or closed, try again.
             case 3: setTimeout((msg) => this.Send(msg), 200);
                 break;
         }

@@ -2,10 +2,6 @@ import React, { PureComponent } from 'react';
 import './../css/App.css';
 
 class PageMeta extends PureComponent {
-    constructor(props) {
-        super(props);
-
-    }
 
     render() {
         if (this.props.loading) {
