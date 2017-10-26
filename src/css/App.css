@@ -1,0 +1,102 @@
+html, body, #root {
+    width: 100%;
+    height: 66vw;
+    overflow: hidden;
+    font-family: "Open Sans Condensed", sans-serif;
+    color: #52595e;
+}
+
+h1 {
+    font-family: "Open Sans";
+    font-size: 1em;
+    color: #2b81af;
+    padding: 0.5em;
+    line-height: 1em;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 3px 5px #ddd;
+    margin: 0;
+}
+
+.highlight {
+    font-weight: 800;
+}
+.highlight:after {
+    content: " >";
+}
+
+i.fa {
+    font-size: 0.7em;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    height: inherit;
+    overflow: hidden;
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 50% 0 50% 0;
+    background: rgba(0,0,0,0.01);
+}
+
+.button {
+    border: solid 1px #ddd;
+    border-radius: 5px;
+    background: #2b81af;
+    color: #fff;
+    width: 5em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.7em;
+    padding: 0.3em;
+    margin: 0 0.3em 0 3em;
+    cursor: default;
+}
+
+.projects {
+    flex-grow: 0;
+    flex-basis: 0;
+    height: inherit;
+    border-right: 1px solid #ddd;
+}
+
+ul {
+    height: 100%;
+    overflow: scroll;
+    padding: 0px 5px 10px 25px;
+    margin: 0px;
+}
+
+li {
+   cursor: default;
+}
+
+li:hover {
+    text-decoration: underline;
+}
+
+.project >> select {
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.pages {
+    flex-grow: 2;
+    flex-basis: 0;
+    height: inherit;
+}
+
+.page {
+    flex-grow: 5;
+    flex-basis: 0;
+    height: inherit;
+}
