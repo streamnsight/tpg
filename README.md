@@ -1,5 +1,9 @@
-run with
+My first React App, based on the Two Pore Guys Engineering test.
 
+Note: I did not interview there, but did this challenge to get started with React.
+
+
+Run with
 ```
 yarn start
 ```
